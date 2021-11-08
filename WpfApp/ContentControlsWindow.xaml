@@ -75,7 +75,14 @@
         </RadioButton>
         <RadioButton Content="Option 4" GroupName="Q2"/>
 
-        <Slider Background="Black" Minimum="-100" Maximum="100" TickFrequency="10" TickPlacement="BottomRight" AutoToolTipPlacement="TopLeft"/>
+        <Slider x:Name="Slider" Background="Black" Minimum="0" Value="35" Maximum="360" TickFrequency="10" TickPlacement="BottomRight" AutoToolTipPlacement="TopLeft"/>
+        <TextBox Text="{Binding ElementName=Slider, Path=Value, UpdateSourceTrigger=PropertyChanged, Delay=1000, Mode=TwoWay}"/>
 
+        <Image Source="/Resources/save-icon-3.png">
+            <Image.LayoutTransform>
+                <RotateTransform Angle="{Binding ElementName=Slider, Path=Value}"/>
+            </Image.LayoutTransform>
+        </Image>
+        
     </StackPanel>
 </Window>
