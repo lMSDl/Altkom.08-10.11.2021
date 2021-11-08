@@ -30,7 +30,7 @@
             Domyślny tekst.
         </TextBox>
         <PasswordBox x:Name="Password" PasswordChar="@" MaxLength="5" Password="123"/>
-        <Button Height="50" Width="200">
+        <Button Height="50" Width="200" Click="Button_Click">
             <StackPanel Orientation="Horizontal" >
                 <Image Source="/Resources/save-icon-3.png" />
                 <Label Content="Save" VerticalContentAlignment="Center"/>
@@ -44,15 +44,16 @@
         </Button>
 
 
-        <CheckBox IsThreeState="True" Content="All Functions"/>
+        <CheckBox x:Name="CheckBox" Content="All Functions" Click="CheckBox_Master_Click"/>
         <StackPanel Margin="20,0">
-            <CheckBox IsChecked="True" ToolTip="Opis funkcji 1">
+            <CheckBox x:Name="CheckBox1" IsChecked="True" ToolTip="Opis funkcji 1"
+                      Click="CheckBox_Slave_Click">
                 Function 1
             </CheckBox>
-            <CheckBox>
+            <CheckBox x:Name="CheckBox2" Click="CheckBox_Slave_Click">
                 Function 2
             </CheckBox>
-            <CheckBox IsChecked="{x:Null}" IsThreeState="True">
+            <CheckBox x:Name="CheckBox3" IsChecked="{x:Null}" IsThreeState="True" Click="CheckBox_Slave_Click">
                 Function 3
             </CheckBox>
         </StackPanel>

@@ -26,5 +26,25 @@ namespace WpfApp
             MyTextBlock.Inlines.Add(new Run("bold") { FontWeight = FontWeights.Bold });        
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Projekt zapisany", "Zapis", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void CheckBox_Master_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBox1.IsChecked = CheckBox2.IsChecked = CheckBox3.IsChecked = (sender as CheckBox).IsChecked;
+        }
+
+        private void CheckBox_Slave_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckBox1.IsChecked == true && CheckBox2.IsChecked == true && CheckBox3.IsChecked == true)
+                CheckBox.IsChecked = true;
+            else if (CheckBox1.IsChecked == true || CheckBox2.IsChecked == true || CheckBox3.IsChecked == true)
+                CheckBox.IsChecked = null;
+            else
+                CheckBox.IsChecked = false;
+        }
     }
 }
