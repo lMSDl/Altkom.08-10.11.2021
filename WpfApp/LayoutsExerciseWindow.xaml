@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp.LayoutsExerciseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="LayoutsExerciseWindow" Height="450" Width="800">
+    <DockPanel Background="Gray">
+        <Button DockPanel.Dock="Bottom" Margin="10">Button</Button>
+        <Button DockPanel.Dock="Top" Margin="10">Button</Button>
+        <Grid Background="DarkGray" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Background="Azure" Margin="10" Grid.Column="0">Button</Button>
+            <StackPanel Background="White" Margin="10" Grid.Column="1" VerticalAlignment="Center">
+                <Button Background="Red" Margin="10">Button</Button>
+                <Button Background="Green" Margin="10">Button</Button>
+                <Button Background="Blue" Margin="10">Button</Button>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
