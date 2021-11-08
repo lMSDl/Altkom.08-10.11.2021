@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Resource Include="Resources\save-icon-3.png" />
+  </ItemGroup>
+
+
 </Project>

@@ -1,0 +1,80 @@
+﻿<Window x:Class="WpfApp.ContentControlsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="ContentControlsWindow" Height="450" Width="800">
+    <StackPanel>
+
+        <TextBlock TextWrapping="WrapWithOverflow" TextTrimming="WordEllipsis">
+            Jestem TextBlock.
+            <Underline>Jestem TextBlock.
+            Jestem TextBlock. <LineBreak/>
+            Jestem TextBlock.
+            <Bold>Jestem TextBlock.</Bold></Underline>  
+            <Hyperlink NavigateUri="https://altkom.pl">Jestem TextBlock.</Hyperlink>
+        </TextBlock>
+        <TextBlock x:Name="MyTextBlock"/>
+        <Label Target="{Binding ElementName=TextBox}">
+            La_bel
+        </Label>
+        <TextBox x:Name="TextBox"
+                 AcceptsReturn="True"
+                 TextWrapping="WrapWithOverflow"
+                 AcceptsTab="True"
+                 SpellCheck.IsEnabled="True"
+                 Language="pl-pl"
+                 ToolTip="Wpisz tekst">
+            Domyślny tekst.
+        </TextBox>
+        <PasswordBox x:Name="Password" PasswordChar="@" MaxLength="5" Password="123"/>
+        <Button Height="50" Width="200">
+            <StackPanel Orientation="Horizontal" >
+                <Image Source="/Resources/save-icon-3.png" />
+                <Label Content="Save" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <Button.ToolTip>
+                <StackPanel Orientation="Horizontal" >
+                    <Image Source="/Resources/save-icon-3.png" />
+                    <Label Content="Save" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Button.ToolTip>
+        </Button>
+
+
+        <CheckBox IsThreeState="True" Content="All Functions"/>
+        <StackPanel Margin="20,0">
+            <CheckBox IsChecked="True" ToolTip="Opis funkcji 1">
+                Function 1
+            </CheckBox>
+            <CheckBox>
+                Function 2
+            </CheckBox>
+            <CheckBox IsChecked="{x:Null}" IsThreeState="True">
+                Function 3
+            </CheckBox>
+        </StackPanel>
+
+        <Label Content="Question 1"/>
+        <RadioButton Content="Option 1" GroupName="Q1"/>
+        <RadioButton Content="Option 2" GroupName="Q1"/>
+        <RadioButton Content="Option 3" GroupName="Q1"/>
+        <RadioButton Content="Option 4" GroupName="Q1"/>
+
+        <Label Content="Question 2"/>
+        <RadioButton Content="Option 1" GroupName="Q2"/>
+        <RadioButton Content="Option 2" GroupName="Q2"/>
+        <RadioButton GroupName="Q2">
+            <StackPanel Orientation="Horizontal" >
+                <Image Source="/Resources/save-icon-3.png" Width="16" Height="16" />
+                <Label Content="Save" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </RadioButton>
+        <RadioButton Content="Option 4" GroupName="Q2"/>
+
+        <Slider Background="Black" Minimum="-100" Maximum="100" TickFrequency="10" TickPlacement="BottomRight" AutoToolTipPlacement="TopLeft"/>
+
+    </StackPanel>
+</Window>
