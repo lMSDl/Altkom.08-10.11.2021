@@ -96,7 +96,16 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Header="DataGrid"/>
+            <TabItem Header="DataGrid" >
+                <DataGrid ItemsSource="{Binding Products}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Binding="{Binding Price}" Header="Cena"/>
+                        <DataGridTextColumn Binding="{Binding ExpirationDate}" Header="Data przydatności"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
