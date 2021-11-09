@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
+        xmlns:converters="clr-namespace:WpfApp.Converters"
         mc:Ignorable="d"
         Title="ItemsControlsWindow" Height="450" Width="800">
     <DockPanel>
@@ -111,6 +112,17 @@
                         <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
                         <DataGridTextColumn Binding="{Binding Price}" Header="Cena"/>
                         <DataGridTextColumn Binding="{Binding ExpirationDate}" Header="Data przydatności"/>
+                        <DataGridTextColumn Binding="{Binding ExpirationDate, Converter={converters:DateTimeToDaysConverter}}" Header="Ilość dni przydatności"/>
+                        <DataGridTextColumn Header="Nazwa + Cena">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding Converter="{converters:StringConcatMultiValueConverter}">
+                                    <MultiBinding.Bindings>
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Price"/>
+                                    </MultiBinding.Bindings>
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
 
