@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
+        xmlns:properties="clr-namespace:WpfApp.Properties"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
     <DockPanel>
@@ -12,16 +13,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="OK" Grid.Column="1" Click="Button_Click"/>
-            <Button Content="Cancel" IsCancel="True"/>
+            <Button Content="{x:Static properties:Resources.Ok}" Grid.Column="1" Click="Button_Click"/>
+            <Button Content="{x:Static properties:Resources.Cancel}" IsCancel="True"/>
         </Grid>
         
         <StackPanel>
-            <Label Content="Name"/>
+            <Label Content="{x:Static properties:Resources.Name}"/>
             <TextBox Text="{Binding Name}"/>
-            <Label Content="Price"/>
+            <Label Content="{x:Static properties:Resources.Price}"/>
             <TextBox Text="{Binding Price}"/>
-            <Label Content="ExpirationDate"/>
+            <Label Content="{x:Static properties:Resources.ExpirationDate}"/>
             <DatePicker SelectedDate="{Binding ExpirationDate}"/>
         </StackPanel>
     </DockPanel>
