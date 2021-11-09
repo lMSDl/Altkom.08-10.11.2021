@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="ItemsControlsWindow" Height="450" Width="800">
-    <Grid>
-        <TabControl SelectedIndex="2" TabStripPlacement="Bottom" BorderThickness="10" BorderBrush="Aquamarine">
+    <DockPanel>
+        <ComboBox DockPanel.Dock="Top" SelectedIndex="{Binding ElementName=TabControl, Path=SelectedIndex}" >
+            <ComboBoxItem Content="ItemsControl"/>
+            <ComboBoxItem Content="ListBox"/>
+            <ComboBoxItem Content="ListView"/>
+            <ComboBoxItem Content="DataGrid"/>
+        </ComboBox>
+
+        <TabControl x:Name="TabControl" SelectedIndex="2" TabStripPlacement="Bottom" BorderThickness="10" BorderBrush="Aquamarine">
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -107,5 +114,5 @@
 
             </TabItem>
         </TabControl>
-    </Grid>
+    </DockPanel>
 </Window>
