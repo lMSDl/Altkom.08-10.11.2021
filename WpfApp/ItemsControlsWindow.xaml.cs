@@ -28,12 +28,13 @@ namespace WpfApp
             DataContext = this;
             StringCollection = "Ala ma kota i trzy psy".Split(' ').ToList();
 
-            Products = new ProductFaker().Generate(15);
+            Products = new ProductFaker().Generate(15).OrderBy(x => x.Price).ToList();
 
         }
 
         public IEnumerable<string> StringCollection { get; set; }
 
         public IEnumerable<Product> Products { get; set; }
+        public Product SelectedProduct { get; set; }
     }
 }

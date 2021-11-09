@@ -27,12 +27,75 @@
                         <Rectangle Width="8" Height="8" Fill="Red"/>
                         <Label Content="ContentControl"/>
                     </StackPanel>-->
-
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Content="{Binding Name}"/>
+                                <Label Content="{Binding Price}"/>
+                                <Label Content="{Binding ExpirationDate}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 
             </TabItem>
-            <TabItem Header="ListBox"/>
-            <TabItem Header="ListView"/>
+            <TabItem Header="ListBox">
+                <ListBox ItemsSource="{Binding Products}"
+                         SelectedItem="{Binding SelectedProduct}"
+                         SelectionMode="Multiple">
+                    <!--<ListBoxItem>
+                        <Label Content="Label2" />
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <Label Content="Label3" />
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <Label Content="Label5" />
+                    </ListBoxItem>-->
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Content="{Binding Name}"/>
+                                <Label Content="{Binding Price}"/>
+                                <Label Content="{Binding ExpirationDate}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    
+                </ListBox>
+            </TabItem>
+            <TabItem Header="ListView">
+                <ListView ItemsSource="{Binding Products}"
+                         SelectedItem="{Binding SelectedProduct}">
+                    <!--<ListViewItem>
+                        <Label Content="Label2" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <Label Content="Label3" />
+                    </ListViewItem>
+                    <ListViewItem>
+                        <Label Content="Label5" />
+                    </ListViewItem>-->
+                    
+                    <!--<ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Content="{Binding Name}"/>
+                                <Label Content="{Binding Price}"/>
+                                <Label Content="{Binding ExpirationDate}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>-->
+
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True">
+                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Price}" Header="Price"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding ExpirationDate}" Header="Expiration Date"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
             <TabItem Header="DataGrid"/>
         </TabControl>
     </Grid>
