@@ -15,6 +15,17 @@
             <ComboBoxItem Content="DataGrid"/>
         </ComboBox>
 
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Add" Grid.Column="0" Click="Button_Add_Click"/>
+            <Button Content="Edit" Grid.Column="1" Click="Button_Edit_Click"/>
+            <Button Content="Remove" Grid.Column="2"/>
+        </Grid>
+
         <TabControl x:Name="TabControl" SelectedIndex="2" TabStripPlacement="Bottom" BorderThickness="10" BorderBrush="Aquamarine">
             <TabItem>
                 <TabItem.Header>
