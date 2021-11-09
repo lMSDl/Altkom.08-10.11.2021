@@ -24,17 +24,18 @@ namespace WpfApp
     {
         public ItemsControlsWindow()
         {
-            InitializeComponent();
             DataContext = this;
             StringCollection = "Ala ma kota i trzy psy".Split(' ').ToList();
 
             Products = new ProductFaker().Generate(15).OrderBy(x => x.Price).ToList();
-
+            SelectedProduct = Products.First();
+            InitializeComponent();
         }
 
         public IEnumerable<string> StringCollection { get; set; }
 
         public IEnumerable<Product> Products { get; set; }
         public Product SelectedProduct { get; set; }
+
     }
 }

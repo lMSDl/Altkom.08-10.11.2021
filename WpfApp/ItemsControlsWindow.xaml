@@ -36,11 +36,13 @@
                     </StackPanel>-->
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" >
+
+                            <local:ProductControl Product="{Binding}"/>
+                            <!--<StackPanel Orientation="Horizontal" >
                                 <Label Content="{Binding Name}"/>
                                 <Label Content="{Binding Price}"/>
                                 <Label Content="{Binding ExpirationDate}"/>
-                            </StackPanel>
+                            </StackPanel>-->
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -112,6 +114,10 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
+            </TabItem>
+
+            <TabItem Header="SelectedProduct">
+                <local:ProductControl Product="{Binding Path=SelectedProduct}"/>
             </TabItem>
         </TabControl>
     </DockPanel>
