@@ -13,12 +13,17 @@
     </Window.Resources>
     
     <DockPanel>
-
         <Button Content="Clear" DockPanel.Dock="Bottom" Click="Button_Clear_Click"/>
         <Button Content="Roll" DockPanel.Dock="Bottom" Click="Button_Roll_Click"/>
         <TextBox Text="{Binding NumberOfDice, Mode=TwoWay, Converter={StaticResource IntegerToStringConverter}}"
                  DockPanel.Dock="Top"/>
 
+        <ProgressBar Maximum="{Binding MaximumProgress}"
+                     Value="{Binding Progress}"
+                     Height="15"
+                     IsIndeterminate="{Binding IndeterminateProgress}"
+                     DockPanel.Dock="Bottom" />
+        
         <ItemsControl ItemsSource="{Binding Results}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
