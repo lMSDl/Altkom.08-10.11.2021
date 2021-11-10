@@ -19,7 +19,7 @@
         
         <StackPanel>
             <Label Content="{x:Static properties:Resources.Name}"/>
-            <TextBox Text="{Binding Name}"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="{x:Static properties:Resources.Price}"/>
             <TextBox Text="{Binding Price}"/>
             <Label Content="{x:Static properties:Resources.ExpirationDate}"/>

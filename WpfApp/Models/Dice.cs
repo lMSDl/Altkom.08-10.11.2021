@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp.Models
 {
-    public class Dice : INotifyPropertyChanged
+    public class Dice : NotifyPropertyChanged
     {
         private int _value;
         private bool isSelected;
@@ -18,21 +19,22 @@ namespace WpfApp.Models
             set
             {
                 _value = value;
-                if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
+                OnPropertyChanged();
+                //if (PropertyChanged != null)
+                //    PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Value)));
             }
         }
+
         public bool IsSelected
         {
             get => isSelected;
             set
             {
                 isSelected = value;
-                if (PropertyChanged != null)
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(IsSelected)));
+                OnPropertyChanged();
+                //if (PropertyChanged != null)
+                //    PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(IsSelected)));
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
