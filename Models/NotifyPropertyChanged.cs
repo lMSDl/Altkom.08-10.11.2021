@@ -19,7 +19,7 @@ namespace Models
         //        PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         //    }
         //}
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (PropertyChanged != null)
             {

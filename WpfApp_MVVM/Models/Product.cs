@@ -1,10 +1,12 @@
-﻿using Models;
+﻿using FluentValidation.Results;
+using Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using WpfApp_MVVM.Models.Validators;
 
 namespace WpfApp_MVVM.Models
 {
@@ -13,20 +15,29 @@ namespace WpfApp_MVVM.Models
         private string name;
         private DateTime expirationDate = DateTime.Now;
         private decimal price;
-
+        private ProductValidator _validator = new ProductValidator();
+        private ValidationResult _validationResult; 
 
         private Dictionary<string, string> _errorDictionary = new Dictionary<string, string>();
 
         #region INotifyDataErrorInfo
-        public bool HasErrors => _errorDictionary.Count > 0;
+        public bool HasErrors => !_validationResult?.IsValid ?? false;// _errorDictionary.Count > 0;
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         public IEnumerable GetErrors(string propertyName)
         {
-            return _errorDictionary.Where(x => x.Key == propertyName).Select(x => x.Value);
+            //return _errorDictionary.Where(x => x.Key == propertyName).Select(x => x.Value);
+            return _validationResult?.Errors.Where(x => x.PropertyName == propertyName).Select(x => x.ErrorMessage).ToList();
         }
+
         #endregion INotifyDataErrorInfo
+
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            base.OnPropertyChanged(propertyName);
+            OnErrorsChanged();
+        }
 
         public string Name
         {
@@ -35,8 +46,6 @@ namespace WpfApp_MVVM.Models
             {
                 name = value;
                 OnPropertyChanged();
-
-                OnErrorsChanged();
             }
         }
 
@@ -47,8 +56,6 @@ namespace WpfApp_MVVM.Models
             {
                 expirationDate = value;
                 OnPropertyChanged();
-
-                OnErrorsChanged();
             }
         }
 
@@ -59,13 +66,12 @@ namespace WpfApp_MVVM.Models
             {
                 price = value;
                 OnPropertyChanged();
-
-                OnErrorsChanged();
             }
         }
         private void OnErrorsChanged([CallerMemberName] string propertyName = "")
         {
-            Validate();
+            //Validate();
+            _validationResult = _validator.Validate(this);
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
@@ -87,6 +93,7 @@ namespace WpfApp_MVVM.Models
             {
                 _errorDictionary[nameof(Price)] = "Price must be between 1-100.";
             }
+
         }
 
 
