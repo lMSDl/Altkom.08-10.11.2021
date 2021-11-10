@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         xmlns:properties="clr-namespace:WpfApp.Properties"
+        xmlns:converters="clr-namespace:WpfApp.Converters"
+        xmlns:validationRules="clr-namespace:WpfApp.ValidationRules"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
     <DockPanel>
@@ -13,17 +15,32 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="{x:Static properties:Resources.Ok}" Grid.Column="1" Click="Button_Click"/>
+            <Button Content="{x:Static properties:Resources.Ok}" Grid.Column="1" Click="Button_Click"
+                    IsEnabled="{Binding HasErrors, Converter={converters:InvertBoolConverter}}"/>
             <Button Content="{x:Static properties:Resources.Cancel}" IsCancel="True"/>
         </Grid>
         
         <StackPanel>
             <Label Content="{x:Static properties:Resources.Name}"/>
-            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                     ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
             <Label Content="{x:Static properties:Resources.Price}"/>
-            <TextBox Text="{Binding Price}"/>
+            <StackPanel>
+            <TextBox x:Name="TextBox_Price" >
+                <TextBox.Text>
+                    <Binding Path="Price" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validationRules:ProductPriceValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+
+            </TextBox>
+                <TextBlock Foreground="Red" Text="{Binding ElementName=TextBox_Price, Path=(Validation.Errors)[0].ErrorContent}" />
+            </StackPanel>
             <Label Content="{x:Static properties:Resources.ExpirationDate}"/>
-            <DatePicker SelectedDate="{Binding ExpirationDate}"/>
+            <DatePicker SelectedDate="{Binding ExpirationDate, ValidatesOnDataErrors=True}"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
         </StackPanel>
     </DockPanel>
 </Window>
